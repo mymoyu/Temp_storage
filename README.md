@@ -8,3 +8,9 @@
 npm install tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
 ```
 
+##### 路由安装
+
+```
+npm install vue-router@4
+```
+

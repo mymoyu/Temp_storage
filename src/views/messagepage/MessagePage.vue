@@ -7,7 +7,7 @@
     <!-- 选项界面 -->
     <div class="select-option">
       <ul>
-        <li><router-link :to="{name:'PhoneRegister'}" class="active-router">账号注册</router-link></li>
+        <li><router-link :to="{name:'Register'}" class="active-router">账号注册</router-link></li>
         <li><router-link :to="{name:'FindPassword'}" class="active-router">找回密码</router-link></li>
         <li><router-link :to="{name:'ChangeMail'}" class="active-router">邮箱改绑</router-link></li>
         <li><router-link :to="{name:'ChangePhone'}" class="active-router">手机改绑</router-link></li>

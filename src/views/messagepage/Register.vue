@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name:'PhoneRegister',
+  name:'Register',
 }
 </script>
 

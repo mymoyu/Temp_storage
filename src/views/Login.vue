@@ -4,11 +4,11 @@
     <div>
         <div>
             <label for="uid">账号: </label>
-            <input type="text" id="uid">
+            <input type="text" v-model="username" id="uid">
         </div>
         <div>
             <label for="password">密码: </label>
-            <input type="password" id="password">
+            <input type="password" v-model="password" id="password">
         </div>
     </div>
     <div class="change-password">
@@ -21,18 +21,49 @@
         </router-link>
     </div>
   </div>
-      <a class="login-ball">
+    <router-link class="login-ball" @click="login" to="/roomentrance">
         <div>登录</div>
         <svg class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="white">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
-    </a>
+    </router-link>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name:'Login',
+    data:function (){
+      return {
+        username:'',
+        password:'',
+      }
+    },
+  methods:{
+      login:function (){
+        if (this.username==''||this.password==''){
+          alert('用户名或密码不存在');
+        }else{
+            axios.post('api/login',{
+              username:this.username,
+              password:this.password
+            }).then(function (response){
+              let res=response.data;
+              if(res.flag==false){
+                alert(res.msg);
+                return ;
+              }else{
+                alert(res.msg);
+                location.href='/'
+                return ;
+              }
+            }).catch(function (error){
+              console.log(error)
+            })
+        }
+      }
+  }
 }
 </script>
 
@@ -42,8 +73,11 @@ export default {
 }
 
 .login-bar {
-    @apply border rounded-xl w-7/12 max-w-2xl relative md:flex-shrink-0 shadow-xl z-50;
+    @apply border rounded-xl w-7/12 max-w-2xl md:flex-shrink-0 shadow-xl z-10 relative;
     background-color: #dde3f9;
+    margin: auto;
+    top: 200px;
+    min-width: 680px;
 }
 
 .login-bar > div:nth-of-type(1){
@@ -90,9 +124,12 @@ export default {
 
 /* 登录小球 */
 .login-ball {
-    @apply relative w-52 h-52 rounded-full;
+    @apply w-52 h-52 rounded-full relative block absolute;
     background: #63c5ef;
-    left: -170px;
+    /* left: -170px; */
+    margin: auto;
+    top: -100px;
+    left: 270px;
 }
 
 .login-ball div{
@@ -104,7 +141,7 @@ export default {
 .login-ball svg {
     @apply relative;
     top: 58px;
-    left: 36px;
+    left: 40px;
 }
 
 .login-ball div, svg{

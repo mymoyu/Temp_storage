@@ -2,12 +2,13 @@ import {createWebHistory, createRouter} from 'vue-router'
 
 import Login from '../views/Login.vue'
 import MessagePage from '../views/messagepage/MessagePage.vue'
-import PhoneRegister from '../views/messagepage/PhoneRegister.vue'
+import Register from '../views/messagepage/Register.vue'
 import FindPassword from '../views/messagepage/FindPassword.vue'
 import ChangeMail from '../views/messagepage/ChangeMail.vue'
 import ChangePhone from '../views/messagepage/ChangePhone.vue'
 import PhoneReg from '../components/messagepage/PhoneReg.vue'
 import MailReg from '../components/messagepage/MailReg.vue'
+import RoomEntrance from '../views/RoomEntrance.vue'
 
 const history = createWebHistory()
 
@@ -29,14 +30,14 @@ const router = new createRouter({
             name:'MessagePage',
             component:MessagePage,
             meta: { title:'注册', },
-            redirect:'/messagepage/phoneregister',
+            redirect:'/messagepage/register',
             children:[
                 {
-                    path:'phoneregister',
-                    name:'PhoneRegister',
-                    component:PhoneRegister,
+                    path:'register',
+                    name:'Register',
+                    component:Register,
                     meta: { title:'账号注册', },
-                    redirect:'/messagepage/phoneregister/phonereg',
+                    redirect:'/messagepage/register/phonereg',
                     children:[
                         {
                             path:'phonereg',
@@ -69,6 +70,12 @@ const router = new createRouter({
                     meta: {title:'手机改绑'}
                 }
             ],
+        },
+        {
+            path:'/roomentrance',
+            name:'RoomEntrance',
+            component:RoomEntrance,
+            meta: {title:'选择聊天的房间吧!'}
         }
     ],
 })
